@@ -1,0 +1,30 @@
+{
+    "publishers": [
+        {"name": "Пушкин"},
+        {"name": "Толстой"}
+    ],
+    "books": [
+        {"title": "Капитанская дочка", "id_publisher": "Пушкин"},
+        {"title": "Евгений Онегин", "id_publisher": "Пушкин"},
+        {"title": "Война и мир", "id_publisher": "Толстой"}
+    ],
+    "shops": [
+        {"name": "Буквоед"},
+        {"name": "Лабиринт"},
+        {"name": "Книжный дом"}
+    ],
+    "stocks": [
+        {"id_book": "Капитанская дочка", "id_shop": "Буквоед", "count": 10},
+        {"id_book": "Евгений Онегин", "id_shop": "Буквоед", "count": 5},
+        {"id_book": "Капитанская дочка", "id_shop": "Лабиринт", "count": 7},
+        {"id_book": "Евгений Онегин", "id_shop": "Книжный дом", "count": 3},
+        {"id_book": "Война и мир", "id_shop": "Лабиринт", "count": 4}
+    ],
+    "sales": [
+        {"price": 600, "date_sale": "2022-11-09", "id_stock": 1, "count": 1},
+        {"price": 500, "date_sale": "2022-11-08", "id_stock": 2, "count": 1},
+        {"price": 580, "date_sale": "2022-11-05", "id_stock": 3, "count": 1},
+        {"price": 490, "date_sale": "2022-11-02", "id_stock": 4, "count": 1},
+        {"price": 600, "date_sale": "2022-10-26", "id_stock": 1, "count": 1}
+    ]
+}
