@@ -1,3 +1,4 @@
+import os
 import json
 from datetime import datetime
 from sqlalchemy import create_engine
@@ -7,13 +8,11 @@ from models import Publisher, Book, Shop, Stock, Sale, Base
 
 load_dotenv()
 
-
 def get_db_session():
     db_url = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
     engine = create_engine(db_url)
     Session = sessionmaker(bind=engine)
     return Session(), engine
-
 
 def load_data(session, data):
     publishers = {p['name']: Publisher(name=p['name']) for p in data['publishers']}
@@ -28,8 +27,7 @@ def load_data(session, data):
     session.add_all(shops.values())
     session.commit()
 
-    stocks = [Stock(id_book=books[s['id_book']].id, id_shop=shops[s['id_shop']].id, count=s['count']) for s in
-              data['stocks']]
+    stocks = [Stock(id_book=books[s['id_book']].id, id_shop=shops[s['id_shop']].id, count=s['count']) for s in data['stocks']]
     session.add_all(stocks)
     session.commit()
 
@@ -37,7 +35,6 @@ def load_data(session, data):
                   id_stock=stocks[s['id_stock'] - 1].id, count=s['count']) for s in data['sales']]
     session.add_all(sales)
     session.commit()
-
 
 def main():
     session, engine = get_db_session()
@@ -48,7 +45,6 @@ def main():
         data = json.load(f)
 
     load_data(session, data)
-
 
 if __name__ == "__main__":
     main()

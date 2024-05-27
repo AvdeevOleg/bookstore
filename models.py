@@ -3,12 +3,14 @@ from sqlalchemy.orm import relationship, declarative_base
 
 Base = declarative_base()
 
+
 class Publisher(Base):
     __tablename__ = 'publisher'
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
 
     books = relationship("Book", back_populates="publisher")
+
 
 class Book(Base):
     __tablename__ = 'book'
@@ -19,12 +21,14 @@ class Book(Base):
     publisher = relationship("Publisher", back_populates="books")
     stocks = relationship("Stock", back_populates="book")
 
+
 class Shop(Base):
     __tablename__ = 'shop'
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
 
     stocks = relationship("Stock", back_populates="shop")
+
 
 class Stock(Base):
     __tablename__ = 'stock'
@@ -37,6 +41,7 @@ class Stock(Base):
     shop = relationship("Shop", back_populates="stocks")
     sales = relationship("Sale", back_populates="stock")
 
+
 class Sale(Base):
     __tablename__ = 'sale'
     id = Column(Integer, primary_key=True)
@@ -46,3 +51,4 @@ class Sale(Base):
     count = Column(Integer, nullable=False)
 
     stock = relationship("Stock", back_populates="sales")
+
